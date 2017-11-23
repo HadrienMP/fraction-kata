@@ -1,8 +1,7 @@
 package fr.hadrienmp.katas.fraction;
 
-import org.junit.Test;
+public class FractionAdditionSpec {
 
-public class FractionTest {
     /*
       * Behaviour slicing
       * =================

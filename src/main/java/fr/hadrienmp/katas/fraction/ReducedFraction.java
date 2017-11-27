@@ -13,7 +13,7 @@ class ReducedFraction implements Fraction {
     }
 
     private void simplify() {
-        for (int divisor = 2; divisor <= numerator(); divisor++) {
+        for (int divisor = 2; divisor <= fraction.numerator(); divisor++) {
             simplifyBy(divisor);
         }
     }
@@ -25,19 +25,11 @@ class ReducedFraction implements Fraction {
     }
 
     private boolean simplifiableBy(int divisor) {
-        return numerator() % divisor == 0 && denominator() % divisor == 0;
+        return fraction.numerator() % divisor == 0 && fraction.denominator() % divisor == 0;
     }
 
     private void reduceOnceBy(int divisor) {
-        fraction = new RawFraction(numerator() / divisor, denominator() / divisor);
-    }
-
-    public int numerator() {
-        return fraction.numerator();
-    }
-
-    public int denominator() {
-        return fraction.denominator();
+        fraction = new RawFraction(fraction.numerator() / divisor, fraction.denominator() / divisor);
     }
 
     public Fraction plus(Fraction other) {
@@ -47,5 +39,15 @@ class ReducedFraction implements Fraction {
     @Override
     public String toString() {
         return fraction.toString();
+    }
+
+    @Override
+    public int numerator() {
+        return fraction.numerator();
+    }
+
+    @Override
+    public int denominator() {
+        return fraction.denominator();
     }
 }

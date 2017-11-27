@@ -9,14 +9,12 @@ class RawFraction implements Fraction {
     private final int numerator;
     private final int denominator;
 
-    public RawFraction(int value) {
-        this(value, 1);
-    }
-
+    @Override
     public int numerator() {
         return numerator;
     }
 
+    @Override
     public int denominator() {
         return denominator;
     }

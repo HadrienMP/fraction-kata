@@ -59,5 +59,8 @@ public class FractionSimplificationTest {
         assertThat(sum).isEqualTo(Fraction.of(2, 3));
     }
 
-
+    @Test
+    public void a_negative_numerator_and_denominator_simplifies_into_a_positive_fraction() throws Exception {
+        assertThat(Fraction.of(-1, -2)).isEqualTo(Fraction.of(1, 2));
+    }
 }

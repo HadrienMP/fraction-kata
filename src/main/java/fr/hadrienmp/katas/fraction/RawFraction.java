@@ -1,13 +1,16 @@
 package fr.hadrienmp.katas.fraction;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
-@AllArgsConstructor
 @EqualsAndHashCode
 class RawFraction implements Fraction {
     private final int numerator;
     private final int denominator;
+
+    RawFraction(int numerator, int denominator) {
+        this.numerator = numerator;
+        this.denominator = denominator;
+    }
 
     @Override
     public int numerator() {
@@ -28,6 +31,11 @@ class RawFraction implements Fraction {
             int denominator = other.denominator() * this.denominator;
             return new RawFraction(numerator, denominator);
         }
+    }
+
+    @Override
+    public Fraction minus(Fraction other) {
+        return this.plus(new RawFraction(-other.numerator(), other.denominator()));
     }
 
     @Override

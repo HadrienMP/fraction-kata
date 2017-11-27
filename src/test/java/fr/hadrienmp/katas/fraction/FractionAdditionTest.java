@@ -9,16 +9,6 @@ import static org.assertj.core.api.Assertions.*;
 
 @RunWith(JUnitParamsRunner.class)
 public class FractionAdditionTest {
-    /*
-      * Behaviour slicing
-      * =================
-      *
-      * [X] Addition
-      * [ ] Substraction
-      * [ ] Multiplication
-      * [ ] Division
-      *
-      */
 
     @Test
     @Parameters({
@@ -28,34 +18,34 @@ public class FractionAdditionTest {
             "1,2,3"
     })
     public void adding_integers(int first, int second, int expected)throws Exception {
-        Fraction sum = new Fraction(first).plus(new Fraction(second));
-        assertThat(sum).isEqualTo(new Fraction(expected));
+        Fraction sum = Fraction.of(first).plus(Fraction.of(second));
+        assertThat(sum).isEqualTo(Fraction.of(expected));
     }
 
     @Test
     public void adding_with_the_same_denominator()throws Exception {
-        Fraction sum = new Fraction(2,2).plus(new Fraction(1,2));
-        assertThat(sum).isEqualTo(new Fraction(3,2));
+        Fraction sum = Fraction.of(2,2).plus(Fraction.of(1,2));
+        assertThat(sum).isEqualTo(Fraction.of(3,2));
     }
 
     @Test
     public void adding_a_fraction_with_an_integer()throws Exception {
-        Fraction first = new Fraction(1);
-        Fraction second = new Fraction(1, 2);
+        Fraction first = Fraction.of(1);
+        Fraction second = Fraction.of(1, 2);
 
         Fraction sum = first.plus(second);
 
-        assertThat(sum).isEqualTo(new Fraction(3,2));
+        assertThat(sum).isEqualTo(Fraction.of(3,2));
     }
 
     @Test
     public void adding_with_different_denominators()throws Exception {
-        Fraction first = new Fraction(1, 3);
-        Fraction second = new Fraction(1, 2);
+        Fraction first = Fraction.of(1, 3);
+        Fraction second = Fraction.of(1, 2);
 
         Fraction sum = first.plus(second);
 
-        assertThat(sum).isEqualTo(new Fraction(5,6));
+        assertThat(sum).isEqualTo(Fraction.of(5,6));
     }
 
 }

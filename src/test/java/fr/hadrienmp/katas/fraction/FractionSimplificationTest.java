@@ -16,7 +16,7 @@ public class FractionSimplificationTest {
 
     @Test
     public void should_not_simplify_fractions_integers()throws Exception {
-        assertThat(frac(1)).isEqualTo(frac(1));
+        assertThat(Fraction.of(1)).isEqualTo(Fraction.of(1));
     }
 
     @Test
@@ -27,43 +27,37 @@ public class FractionSimplificationTest {
 
     public List<? extends Addable> unsimplifiableFractions() {
         return asList(
-                frac(1, 2),
-                frac(3,4),
-                frac(6,7)
+                Fraction.of(1, 2),
+                Fraction.of(3, 4),
+                Fraction.of(6, 7)
         );
     }
 
     @Test
-    @Parameters(method = "simplifiedFractions")
+    @Parameters(method = "simplifiableFractions")
     public void simplification(Fraction complicated, Fraction simplified)throws Exception {
         assertThat(complicated).isEqualTo(simplified);
     }
 
-    public List<? extends List<? extends Fraction>> simplifiedFractions() {
+    public List<? extends List<? extends Fraction>> simplifiableFractions() {
         return asList(
-            asList(frac(2,4), frac(1,2)),
-            asList(frac(4,8), frac(1,2)),
-            asList(frac(6,3), frac(2)),
-            asList(frac(3,6), frac(1, 2))
+            asList(Fraction.of(2, 4), Fraction.of(1, 2)),
+            asList(Fraction.of(4, 8), Fraction.of(1, 2)),
+            asList(Fraction.of(6, 3), Fraction.of(2)),
+            asList(Fraction.of(3, 6), Fraction.of(1, 2)),
+            asList(Fraction.of(5, 10), Fraction.of(1, 2))
         );
     }
 
     @Test
-    @Ignore
     public void hard_simplification()throws Exception {
-        Fraction first = frac(5, 12);
-        Fraction second = frac(1, 4);
+        Fraction first = Fraction.of(5, 12);
+        Fraction second = Fraction.of(1, 4);
 
         Fraction sum = first.plus(second);
 
-        assertThat(sum).isEqualTo(frac(2,3));
+        assertThat(sum).isEqualTo(Fraction.of(2, 3));
     }
 
 
-    private static Fraction frac(int value) {
-        return new Fraction(value);
-    }
-    private static Fraction frac(int numerator, int denominator) {
-        return new Fraction(numerator, denominator);
-    }
 }

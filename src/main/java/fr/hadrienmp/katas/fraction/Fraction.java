@@ -1,15 +1,37 @@
 package fr.hadrienmp.katas.fraction;
 
-interface Fraction extends Addable<Fraction> {
+import fr.hadrienmp.katas.fraction.operations.SignSimplification;
+import fr.hadrienmp.katas.fraction.operations.Simplification;
+import lombok.EqualsAndHashCode;
 
-    int numerator();
-    int denominator();
+@EqualsAndHashCode
+public class Fraction {
+    public final int numerator;
+    public final int denominator;
 
-    static ReducedFraction of(int value) {
-        return new ReducedFraction(new RawFraction(value, 1));
+    private Fraction(int numerator, int denominator) {
+        if (denominator == 0) throw new IllegalArgumentException();
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
-    static ReducedFraction of(int numerator, int denominator) {
-        return new ReducedFraction(new RawFraction(numerator, denominator));
+    public static Fraction of(int value) {
+        return Fraction.of(value, 1);
+    }
+
+    public static Fraction of(int numerator, int denominator) {
+        return new SignSimplification(
+                new Simplification(
+                        new Fraction(numerator, denominator)))
+                .result();
+    }
+
+    @Override
+    public String toString() {
+        String string = numerator + "";
+        if (denominator != 1) {
+            string += "/" + denominator;
+        }
+        return string;
     }
 }

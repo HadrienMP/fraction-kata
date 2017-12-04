@@ -21,15 +21,15 @@ public class AdditionTest {
     public void adding_integers(int first, int second, int expected) throws Exception {
         Fraction firstFraction = Fraction.of(first);
         Fraction secondFraction = Fraction.of(second);
-        Fraction expectedFraction = Fraction.of(expected);
 
-        Fraction sum = new Addition(firstFraction, secondFraction).result();
-        assertThat(sum).isEqualTo(expectedFraction);
+        Fraction sum = new Addition(firstFraction, secondFraction).get();
+
+        assertThat(sum).isEqualTo(Fraction.of(expected));
     }
 
     @Test
     public void adding_with_the_same_denominator() throws Exception {
-        Fraction sum = new Addition(Fraction.of(2, 2), Fraction.of(1, 2)).result();
+        Fraction sum = new Addition(Fraction.of(2, 2), Fraction.of(1, 2)).get();
         assertThat(sum).isEqualTo(Fraction.of(3, 2));
     }
 
@@ -38,7 +38,7 @@ public class AdditionTest {
         Fraction first = Fraction.of(1);
         Fraction second = Fraction.of(1, 2);
 
-        Fraction sum = new Addition(first, second).result();
+        Fraction sum = new Addition(first, second).get();
 
         assertThat(sum).isEqualTo(Fraction.of(3, 2));
     }
@@ -48,9 +48,8 @@ public class AdditionTest {
         Fraction first = Fraction.of(1, 3);
         Fraction second = Fraction.of(1, 2);
 
-        Fraction sum = new Addition(first, second).result();
+        Fraction sum = new Addition(first, second).get();
 
         assertThat(sum).isEqualTo(Fraction.of(5, 6));
     }
-
 }

@@ -1,17 +1,18 @@
 package fr.hadrienmp.katas.fraction.operations;
 
 import fr.hadrienmp.katas.fraction.Fraction;
+import fr.hadrienmp.katas.fraction.FractionProvider;
 
-public class SignSimplification implements Operation {
-    private Operation operation;
+public class SignSimplification implements FractionProvider {
+    private FractionProvider operation;
 
-    public SignSimplification(Operation operation) {
+    public SignSimplification(FractionProvider operation) {
         this.operation = operation;
     }
 
     @Override
-    public Fraction result() {
-        Fraction fraction = operation.result();
+    public Fraction get() {
+        Fraction fraction = operation.get();
         if (doubleNegative(fraction) || negationOnDenominator(fraction)) {
             return Fraction.of(-fraction.numerator, -fraction.denominator);
         } else {

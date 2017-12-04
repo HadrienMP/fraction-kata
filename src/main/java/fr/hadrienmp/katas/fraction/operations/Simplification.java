@@ -1,8 +1,9 @@
 package fr.hadrienmp.katas.fraction.operations;
 
 import fr.hadrienmp.katas.fraction.Fraction;
+import fr.hadrienmp.katas.fraction.FractionProvider;
 
-public class Simplification implements Operation {
+public class Simplification implements FractionProvider {
 
     private Fraction fraction;
 
@@ -11,7 +12,7 @@ public class Simplification implements Operation {
     }
 
     @Override
-    public Fraction result() {
+    public Fraction get() {
         return simplify(fraction);
     }
 

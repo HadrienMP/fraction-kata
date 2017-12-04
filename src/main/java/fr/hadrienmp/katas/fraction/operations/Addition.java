@@ -1,18 +1,24 @@
 package fr.hadrienmp.katas.fraction.operations;
 
 import fr.hadrienmp.katas.fraction.Fraction;
+import fr.hadrienmp.katas.fraction.FractionProvider;
 
-public class Addition implements Operation {
-    private final Fraction first;
-    private final Fraction second;
+public class Addition implements FractionProvider {
 
-    public Addition(Fraction first, Fraction second) {
+    private final FractionProvider first;
+    private final FractionProvider second;
+
+    public Addition(FractionProvider first, FractionProvider second) {
         this.first = first;
         this.second = second;
     }
 
     @Override
-    public Fraction result() {
+    public Fraction get() {
+        return add(first.get(), second.get());
+    }
+
+    private static Fraction add(Fraction first, Fraction second) {
         if (first.denominator == second.denominator) {
             int numerator = first.numerator + second.numerator;
             int denominator = first.denominator;

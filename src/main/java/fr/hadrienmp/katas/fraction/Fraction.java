@@ -1,12 +1,11 @@
 package fr.hadrienmp.katas.fraction;
 
-import fr.hadrienmp.katas.fraction.operations.Multiplication;
 import fr.hadrienmp.katas.fraction.operations.SignSimplification;
 import fr.hadrienmp.katas.fraction.operations.Simplification;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
-public class Fraction {
+public class Fraction implements FractionProvider {
     public final int numerator;
     public final int denominator;
 
@@ -24,7 +23,7 @@ public class Fraction {
         return new SignSimplification(
                 new Simplification(
                         new Fraction(numerator, denominator)))
-                .result();
+                .get();
     }
 
     @Override
@@ -36,7 +35,8 @@ public class Fraction {
         return string;
     }
 
-    public Fraction times(Fraction other) {
-        return new Multiplication(this, other).result();
+    @Override
+    public Fraction get() {
+        return this;
     }
 }

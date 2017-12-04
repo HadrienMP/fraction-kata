@@ -1,5 +1,6 @@
 package fr.hadrienmp.katas.fraction;
 
+import fr.hadrienmp.katas.fraction.operations.Multiplication;
 import fr.hadrienmp.katas.fraction.operations.SignSimplification;
 import fr.hadrienmp.katas.fraction.operations.Simplification;
 import lombok.EqualsAndHashCode;
@@ -33,5 +34,9 @@ public class Fraction {
             string += "/" + denominator;
         }
         return string;
+    }
+
+    public Fraction times(Fraction other) {
+        return new Multiplication(this, other).result();
     }
 }
